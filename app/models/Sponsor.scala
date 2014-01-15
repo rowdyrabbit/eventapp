@@ -5,7 +5,6 @@ case class Sponsor(id: Long, eventId: Long, name: String, src: String, link: Str
 
 
 object Sponsor {
-
   //hardcoded list for now until we integrate with a data store
   def all(): List[Sponsor] = List(
     Sponsor(1, 1, "Google", "img/google.jpg", "www.google.com.au"),
