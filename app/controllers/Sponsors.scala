@@ -11,7 +11,7 @@ object Sponsors extends Controller {
     implicit val sponsorFormat = Json.format[Sponsor]
 
     val sponsors = Json.toJson(Sponsor.all())
-    Ok(sponsors)
+    Ok(sponsors).withHeaders("Access-Control-Allow-Origin" -> "*")
   }
 
 }
