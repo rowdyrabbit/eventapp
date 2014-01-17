@@ -3,7 +3,6 @@ package models
 
 case class Sponsor(id: Long, eventId: Long, name: String, src: String, link: String)
 
-
 object Sponsor {
   //hardcoded list for now until we integrate with a data store
   def all(): List[Sponsor] = List(

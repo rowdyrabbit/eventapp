@@ -6,7 +6,7 @@
 GET     /                           controllers.Application.index
 
 
-GET     /v1/program                 controllers.Program.view
+GET     /v1/program                 controllers.Program.list
 
 GET     /v1/sponsors                controllers.Sponsors.list
 
