@@ -1,1 +1,1 @@
-web: target/universal/stage/bin/eventapp -Dhttp.port=${PORT} -DapplyEvolutions.default=true -Ddb.default.url=${DATABASE_URL} -Ddb.default.driver=org.postgresql.Driver
+web: target/universal/stage/bin/eventapp -Dhttp.port=${PORT} -Dmongodb.uri=$MONGOLAB_URI

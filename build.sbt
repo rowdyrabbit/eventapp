@@ -6,7 +6,7 @@ libraryDependencies ++= Seq(
   jdbc,
   anorm,
   cache,
-   "postgresql" % "postgresql" % "8.4-702.jdbc4"
+  "org.reactivemongo" %% "play2-reactivemongo" % "0.10.2"
 )
 
 play.Project.playScalaSettings
