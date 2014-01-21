@@ -8,7 +8,7 @@ import play.modules.reactivemongo.MongoController
 import play.modules.reactivemongo.json.collection.JSONCollection
 import reactivemongo.api.Cursor
 import models.Sponsor
-import models.JsonFormats._
+import models.SponsorJsonFormats._
 
 object Sponsors extends Controller with MongoController {
 

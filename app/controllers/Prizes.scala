@@ -1,16 +1,28 @@
 package controllers
 
-import play.api._
 import play.api.mvc._
 import play.api.libs.json.Json
+import play.api.libs.concurrent.Execution.Implicits._
 import models.Prize
+import scala.concurrent.Future
+import play.modules.reactivemongo.MongoController
+import play.modules.reactivemongo.json.collection.JSONCollection
+import reactivemongo.api.Cursor
+import models.PrizeJsonFormats._
 
-object Prizes extends Controller {
+object Prizes extends Controller with MongoController {
 
-  def list = Action {
-    implicit val prizesFormat = Json.format[Prize]
+  def collection: JSONCollection = db.collection[JSONCollection]("prizes")
 
-    val prizes = Json.toJson(Prize.all())
-    Ok(prizes).withHeaders("Access-Control-Allow-Origin" -> "*")
+  def list = Action.async {
+    val cursor: Cursor[Prize] = collection.
+      find(Json.obj()).
+      cursor[Prize]
+
+    val futurePrizeList: Future[List[Prize]] = cursor.collect[List]()
+
+    futurePrizeList.map { prizes =>
+      Ok(Json.toJson(prizes)).withHeaders("Access-Control-Allow-Origin" -> "*")
+    }
   }
 }
