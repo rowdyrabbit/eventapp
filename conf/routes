@@ -9,6 +9,7 @@ GET     /v1/program                 controllers.Program.list
 GET     /v1/sponsors                controllers.Sponsors.list
 GET     /v1/prizes                  controllers.Prizes.list
 GET     /v1/credits                 controllers.Credits.list
+GET     /v1/menuItems               controllers.Menu.list
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
