@@ -9,12 +9,15 @@ import play.modules.reactivemongo.json.collection.JSONCollection
 import reactivemongo.api.Cursor
 import models.Credit
 import models.CreditJsonFormats._
+import play.Logger
 
 object Credits extends Controller with MongoController {
 
   def collection: JSONCollection = db.collection[JSONCollection]("credits")
 
   def list = Action.async {
+    Logger.info("Requesting credits");
+
     val cursor: Cursor[Credit] = collection.
       find(Json.obj()).
       cursor[Credit]
