@@ -3,14 +3,15 @@ package controllers
 import play.api._
 import play.api.mvc._
 import play.api.libs.json.Json
-import models.Schedule
+import models.{Timeslot, ProgramDays}
 
 object Program extends Controller {
 
   def list = Action {
-    implicit val scheduleFormat = Json.format[Schedule]
+    implicit val timeslotFormat = Json.format[Timeslot]
+    implicit val scheduleFormat = Json.format[ProgramDays]
 
-    val programs = Json.toJson(Schedule.all())
+    val programs = Json.toJson(ProgramDays.all())
     Ok(programs).withHeaders("Access-Control-Allow-Origin" -> "*")
   }
 }
