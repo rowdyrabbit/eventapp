@@ -9,6 +9,7 @@ import play.modules.reactivemongo.MongoController
 import play.modules.reactivemongo.json.collection.JSONCollection
 import reactivemongo.api.Cursor
 import models.PrizeJsonFormats._
+import utils.WebUtils._
 
 object Prizes extends Controller with MongoController {
 
@@ -22,7 +23,7 @@ object Prizes extends Controller with MongoController {
     val futurePrizeList: Future[List[Prize]] = cursor.collect[List]()
 
     futurePrizeList.map { prizes =>
-      Ok(Json.toJson(prizes)).withHeaders("Access-Control-Allow-Origin" -> "*")
+      Ok(Json.toJson(prizes)).withHeaders(CORSHeader)
     }
   }
 }
