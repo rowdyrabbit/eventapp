@@ -1,6 +1,6 @@
 package models
 
-case class Prize(name: String, desc: String)
+case class Prize(name: String, desc: String, order: Int)
 
 object PrizeJsonFormats {
   import play.api.libs.json.Json
