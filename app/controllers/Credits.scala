@@ -10,6 +10,9 @@ import reactivemongo.api.Cursor
 import models.Credit
 import models.CreditJsonFormats._
 import play.Logger
+import utils.WebUtils._
+import models.Credit
+import play.modules.reactivemongo.json.collection.JSONCollection
 
 object Credits extends Controller with MongoController {
 
@@ -25,7 +28,7 @@ object Credits extends Controller with MongoController {
     val futureCreditList: Future[List[Credit]] = cursor.collect[List]()
 
     futureCreditList.map { credits =>
-      Ok(Json.toJson(credits)).withHeaders("Access-Control-Allow-Origin" -> "*")
+      Ok(Json.toJson(credits)).withHeaders(CORSHeader)
     }
   }
 }

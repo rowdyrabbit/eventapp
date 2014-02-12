@@ -9,6 +9,9 @@ import play.modules.reactivemongo.json.collection.JSONCollection
 import reactivemongo.api.Cursor
 import models.MenuItem
 import models.MenuItemJsonFormats._
+import utils.WebUtils._
+import models.MenuItem
+import play.modules.reactivemongo.json.collection.JSONCollection
 
 object Menu extends Controller with MongoController {
 
@@ -22,7 +25,7 @@ object Menu extends Controller with MongoController {
     val futureMenuList: Future[List[MenuItem]] = cursor.collect[List]()
 
     futureMenuList.map { menuItems =>
-      Ok(Json.toJson(menuItems)).withHeaders("Access-Control-Allow-Origin" -> "*")
+      Ok(Json.toJson(menuItems)).withHeaders(CORSHeader)
     }
   }
 }

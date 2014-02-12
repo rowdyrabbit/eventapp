@@ -9,6 +9,9 @@ import play.modules.reactivemongo.json.collection.JSONCollection
 import reactivemongo.api.Cursor
 import models.Sponsor
 import models.SponsorJsonFormats._
+import utils.WebUtils._
+import models.Sponsor
+import play.modules.reactivemongo.json.collection.JSONCollection
 
 object Sponsors extends Controller with MongoController {
 
@@ -23,7 +26,7 @@ object Sponsors extends Controller with MongoController {
     val futureSponsorList: Future[List[Sponsor]] = cursor.collect[List]()
 
     futureSponsorList.map { sponsors =>
-      Ok(Json.toJson(sponsors)).withHeaders("Access-Control-Allow-Origin" -> "*")
+      Ok(Json.toJson(sponsors)).withHeaders(CORSHeader)
     }
   }
 

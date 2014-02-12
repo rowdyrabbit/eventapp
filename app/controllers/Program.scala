@@ -9,6 +9,9 @@ import play.modules.reactivemongo.json.collection.JSONCollection
 import reactivemongo.api.Cursor
 import models.ProgramDays
 import models.ProgramDaysJsonFormats._
+import utils.WebUtils._
+import models.ProgramDays
+import play.modules.reactivemongo.json.collection.JSONCollection
 
 object Program extends Controller with MongoController {
 
@@ -22,7 +25,7 @@ object Program extends Controller with MongoController {
     val futureProgramList: Future[List[ProgramDays]] = cursor.collect[List]()
 
     futureProgramList.map { programDays =>
-      Ok(Json.toJson(programDays)).withHeaders("Access-Control-Allow-Origin" -> "*")
+      Ok(Json.toJson(programDays)).withHeaders(CORSHeader)
     }
   }
 }
