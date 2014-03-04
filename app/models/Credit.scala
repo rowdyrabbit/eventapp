@@ -1,6 +1,6 @@
 package models
 
-case class Credit(name: String, desc: String, order: Int)
+case class Credit(name: String, desc: String, order: Int, eventId: String)
 
 object CreditJsonFormats {
   import play.api.libs.json.Json
