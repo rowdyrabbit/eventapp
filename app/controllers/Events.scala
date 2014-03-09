@@ -28,7 +28,7 @@ object Events extends Controller with MongoController {
     val futureEventList: Future[List[JsObject]] = cursor.collect[List]()
 
     futureEventList.map { events =>
-      Ok(Json.toJson(events)).withHeaders("Access-Control-Allow-Origin" -> "*")
+      Ok(Json.toJson(events)).withHeaders(CORSHeader)
     }
   }
 
